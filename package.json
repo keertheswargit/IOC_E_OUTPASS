@@ -1,0 +1,31 @@
+{
+  "name": "e-outpass-system",
+  "version": "1.0.0",
+  "description": "Smart Hostel Outpass Permission Management System - Warden Review & Data Store",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "node tests/comprehensive.test.js",
+    "test:comprehensive": "node tests/comprehensive.test.js",
+    "test:auth": "node tests/auth.test.js",
+    "test:approval": "node tests/approvalApi.test.js",
+    "test:all": "node tests/comprehensive.test.js && node tests/approvalApi.test.js && node tests/auth.test.js && node tests/outpassStore.test.js && node tests/server.test.js",
+    "db:init": "node src/scripts/initDb.js"
+  },
+  "dependencies": {
+    "@neondatabase/serverless": "^1.1.0",
+    "dotenv": "^17.4.2",
+    "express": "^4.19.2",
+    "pg": "^8.23.0",
+    "ws": "^8.22.0"
+  },
+  "keywords": [
+    "hostel",
+    "outpass",
+    "warden",
+    "permission",
+    "e-outpass"
+  ],
+  "author": "Keertheswar",
+  "license": "ISC"
+}

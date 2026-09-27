@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Warden Portal Login | Hostel E-Outpass</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    .portal-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: #fef3c7;
+      color: #92400e;
+      border: 1px solid #fde68a;
+      padding: 0.35rem 0.85rem;
+      border-radius: 9999px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    .alert-banner-persistent {
+      background-color: #fef2f2;
+      border: 2px solid #ef4444;
+      color: #991b1b;
+      padding: 1rem;
+      border-radius: 8px;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      font-weight: 600;
+      font-size: 0.95rem;
+      line-height: 1.4;
+      box-shadow: 0 4px 6px -1px rgba(239, 68, 68, 0.15);
+    }
+    .alert-banner-persistent.hidden {
+      display: none !important;
+    }
+    .alert-icon {
+      flex-shrink: 0;
+      color: #ef4444;
+    }
+    .demo-eval-card {
+      margin-top: 1.5rem;
+      background: #f8fafc;
+      border: 1px dashed #cbd5e1;
+      border-radius: 8px;
+      padding: 1rem;
+      font-size: 0.85rem;
+    }
+    .demo-eval-title {
+      font-weight: 700;
+      color: #334155;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+    .eval-btn-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .eval-btn {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      padding: 0.35rem 0.65rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      font-weight: 500;
+      transition: all 0.15s ease;
+    }
+    .eval-btn:hover {
+      background: #f1f5f9;
+      border-color: #94a3b8;
+    }
+    .eval-btn.danger-eval {
+      color: #b91c1c;
+      border-color: #fca5a5;
+    }
+    .eval-btn.danger-eval:hover {
+      background: #fef2f2;
+    }
+    .back-home-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      color: #64748b;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      margin-top: 1.25rem;
+    }
+    .back-home-link:hover {
+      color: #2563eb;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-wrapper">
+    <div class="login-card">
+      <div class="login-brand">
+        <span class="portal-badge">🛡️ Warden Executive Portal</span>
+        <div class="brand-icon-large" style="background: linear-gradient(135deg, #0284c7, #0369a1);">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+          </svg>
+        </div>
+        <h2>Hostel Warden Portal</h2>
+        <p class="login-subtext">Review applications, inspect parent verification & grant permissions</p>
+      </div>
+
+      <!-- High-Visibility Persistent Error Alert Banner -->
+      <div id="loginErrorBanner" class="alert-banner-persistent hidden" role="alert">
+        <svg class="alert-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="12" y1="8" x2="12" y2="12"></line>
+          <line x1="12" y1="16" x2="12.01" y2="16"></line>
+        </svg>
+        <div class="alert-content">
+          <span id="loginErrorText">Error message</span>
+        </div>
+      </div>
+
+      <!-- Warden Login Form -->
+      <form id="wardenLoginForm" class="login-form">
+        <input type="hidden" id="targetRole" value="warden">
+
+        <div class="form-group">
+          <label for="wardenEmail">Warden Identifier or Email *</label>
+          <input type="text" id="wardenEmail" placeholder="e.g. warden.marutham@college.edu or WARDEN-MAR" required autocomplete="username">
+        </div>
+
+        <div class="form-group">
+          <label for="wardenPassword">Password *</label>
+          <input type="password" id="wardenPassword" placeholder="Enter warden password" required autocomplete="current-password">
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block" style="background-color: #0284c7;" id="btnWardenLoginSubmit">
+          <span>Sign In to Warden Portal</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </button>
+      </form>
+
+      <div style="text-align: center;">
+        <a href="index.html" class="back-home-link">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+          Back to Central Portal Selection
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById("wardenLoginForm");
+    const emailInput = document.getElementById("wardenEmail");
+    const passwordInput = document.getElementById("wardenPassword");
+    const errorBanner = document.getElementById("loginErrorBanner");
+    const errorText = document.getElementById("loginErrorText");
+
+    function showError(message) {
+      errorText.textContent = message;
+      errorBanner.classList.remove("hidden");
+    }
+
+    function clearError() {
+      errorBanner.classList.add("hidden");
+    }
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      clearError();
+
+      const email = emailInput.value.trim();
+      const password = passwordInput.value;
+
+      try {
+        const response = await fetch("/api/auth/login", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, password, targetRole: "warden" })
+        });
+
+        const data = await response.json();
+
+        if (!response.ok || !data.success) {
+          showError(data.message || data.error || "Authentication failed.");
+          return;
+        }
+
+        // Store session and redirect
+        localStorage.setItem("eop_user", JSON.stringify(data.user));
+        localStorage.setItem("eop_token", data.token);
+        sessionStorage.setItem("e_outpass_user", JSON.stringify(data.user));
+        window.location.href = data.redirectUrl || "/index.html?portal=warden";
+      } catch (err) {
+        showError("Connection error: Unable to contact server. Please verify backend is running.");
+      }
+    });
+  </script>
+</body>
+</html>
